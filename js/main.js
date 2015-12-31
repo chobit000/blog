@@ -59,10 +59,7 @@ require([], function (){
 			var isFancy = $(".isFancy");
 			if(isFancy.length != 0){
 				var imgArr = $(".article-inner img");
-				for(var i=0,len=imgArr.length;i<len;i++){
-					var src = imgArr.eq(i).attr("src");
-					var title = imgArr.eq(i).attr("alt");
-					imgArr.eq(i).replaceWith("<a href='"+src+"' title='"+title+"' rel='fancy-group' class='fancy-ctn fancybox'><img src='"+src+"' title='"+title+"'></a>");
+				for(var i=0,len=imgArr.length;i<len;i++){ var="" src="imgArr.eq(i).attr("src");" title="imgArr.eq(i).attr("alt");" imgarr.eq(i).replacewith("<a="" href=""+src+"" rel="fancy-group" class="fancy-ctn fancybox"><img src=""+src+"" title=""+title+"">");
 				}
 				$(".article-inner .fancy-ctn").fancybox();
 			}
@@ -84,27 +81,4 @@ require([], function (){
 			//content
 			function showArticle(){
 				$(".article").each(function(){
-					if( $(this).offset().top <= $(window).scrollTop()+$(window).height() && !($(this).hasClass('show')) ) {
-						$(this).removeClass("hidden").addClass("show");
-						$(this).addClass("is-hiddened");
-					}else{
-						if(!$(this).hasClass("is-hiddened")){
-							$(this).addClass("hidden");
-						}
-					}
-				});
-			}
-			$(window).on('scroll', function(){
-				showArticle();
-			});
-			showArticle();
-		}
-		
-	}
-	
-	//是否新窗口打开链接
-	if(yiliaConfig.open_in_new == true){
-		$(".article a[href]").attr("target", "_blank")
-	}
-	
-});
+					if( $(this).offset().top </len;i++){>

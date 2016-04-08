@@ -2,14 +2,14 @@ require([], function (){
 
 	var isMobileInit = false;
 	var loadMobile = function(){
-		require(['/js/mobile.js'], function(mobile){
+		require(['./blog/js/mobile.js'], function(mobile){
 			mobile.init();
 			isMobileInit = true;
 		});
 	}
 	var isPCInit = false;
 	var loadPC = function(){
-		require(['/js/pc.js'], function(pc){
+		require(['./blog/js/pc.js'], function(pc){
 			pc.init();
 			isPCInit = true;
 		});
@@ -55,11 +55,14 @@ require([], function (){
 
 	//是否使用fancybox
 	if(yiliaConfig.fancybox === true){
-		require(['/fancybox/jquery.fancybox.js'], function(pc){
+		require(['./blog/fancybox/jquery.fancybox.js'], function(pc){
 			var isFancy = $(".isFancy");
 			if(isFancy.length != 0){
 				var imgArr = $(".article-inner img");
-				for(var i=0,len=imgArr.length;i<len;i++){ var="" src="imgArr.eq(i).attr("src");" title="imgArr.eq(i).attr("alt");" imgarr.eq(i).replacewith("<a="" href=""+src+"" rel="fancy-group" class="fancy-ctn fancybox"><img src=""+src+"" title=""+title+"">");
+				for(var i=0,len=imgArr.length;i<len;i++){
+					var src = imgArr.eq(i).attr("src");
+					var title = imgArr.eq(i).attr("alt");
+					imgArr.eq(i).replaceWith("<a href='"+src+"' title='"+title+"' rel='fancy-group' class='fancy-ctn fancybox'><img src='"+src+"' title='"+title+"'></a>");
 				}
 				$(".article-inner .fancy-ctn").fancybox();
 			}
@@ -69,7 +72,7 @@ require([], function (){
 	//是否开启动画
 	if(yiliaConfig.animate === true){
 
-		require(['/js/jquery.lazyload.js'], function(){
+		require(['./blog/js/jquery.lazyload.js'], function(){
 			//avatar
 			$(".js-avatar").attr("src", $(".js-avatar").attr("lazy-src"));
 			$(".js-avatar")[0].onload = function(){
@@ -81,4 +84,27 @@ require([], function (){
 			//content
 			function showArticle(){
 				$(".article").each(function(){
-					if( $(this).offset().top </len;i++){>
+					if( $(this).offset().top <= $(window).scrollTop()+$(window).height() && !($(this).hasClass('show')) ) {
+						$(this).removeClass("hidden").addClass("show");
+						$(this).addClass("is-hiddened");
+					}else{
+						if(!$(this).hasClass("is-hiddened")){
+							$(this).addClass("hidden");
+						}
+					}
+				});
+			}
+			$(window).on('scroll', function(){
+				showArticle();
+			});
+			showArticle();
+		}
+		
+	}
+	
+	//是否新窗口打开链接
+	if(yiliaConfig.open_in_new == true){
+		$(".article a[href]").attr("target", "_blank")
+	}
+	
+});

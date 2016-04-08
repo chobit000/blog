@@ -4,19 +4,20 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>hexo从零到部署 | CHOBIT&#39;S BLOG</title>
+  <title>hexo从零到部署（一） | CHOBIT&#39;S BLOG</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="很早之前就想写博客了，但是一直懒拖到现在。 趁热把HEXO从安装到部署到GIT的过程记录一下">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hexo从零到部署">
+<meta property="og:title" content="hexo从零到部署（一）">
 <meta property="og:url" content="http://chobit000.github.io/blog/2015-12-30-Wed Dec 30 2015 17:08:06 GMT+0800 (CST)/index.html">
 <meta property="og:site_name" content="CHOBIT'S BLOG">
 <meta property="og:description" content="很早之前就想写博客了，但是一直懒拖到现在。 趁热把HEXO从安装到部署到GIT的过程记录一下">
 <meta property="og:image" content="http://chobit000.github.io/blog/blog/images/master1200.jpg">
 <meta property="og:image" content="http://chobit000.github.io/blog/blog/images/hexo-web.png">
-<meta property="og:updated_time" content="2016-01-01T05:05:02.000Z">
+<meta property="og:image" content="http://chobit000.github.io/blog/blog/images/hello-world.png">
+<meta property="og:updated_time" content="2016-04-08T07:29:47.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hexo从零到部署">
+<meta name="twitter:title" content="hexo从零到部署（一）">
 <meta name="twitter:description" content="很早之前就想写博客了，但是一直懒拖到现在。 趁热把HEXO从安装到部署到GIT的过程记录一下">
   
     <link rel="alternative" href="/atom.xml" title="CHOBIT&#39;S BLOG" type="application/atom+xml">
@@ -189,7 +190,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      hexo从零到部署
+      hexo从零到部署（一）
     </h1>
   
 
@@ -241,7 +242,167 @@
 </code></pre><p>这个时候再访问localhost://4000</p>
 <p><img src="/blog/images/hexo-web.png" alt="" title="hello"></p>
 <p>这样第一步就完成了，在本地搭建了一个hexo环境</p>
-<h1 id="3-开通github的blog的仓库">3.开通github的blog的仓库</h1>
+<h1 id="3-_Hexo的使用">3. Hexo的使用</h1><h3 id="3-1_全局配置">3.1 全局配置</h3><p>_config.yml是全局的配置文件：很多的网站配置都在这个文件中定义。</p>
+<ul>
+<li>站点信息: 定义标题，作者，语言</li>
+<li>URL: URL访问路径</li>
+<li>文件目录: 正文的存储目录</li>
+<li>写博客配置：文章标题，文章类型，外部链接等</li>
+<li>目录和标签：默认分类，分类图，标签图</li>
+<li>归档设置：归档的类型</li>
+<li>服务器设置：IP，访问端口，日志输出</li>
+<li>时间和日期格式： 时间显示格式，日期显示格式</li>
+<li>分页设置：每页显示数量</li>
+<li>评论：外挂的Disqus评论系统</li>
+<li>插件和皮肤：换皮肤，安装插件</li>
+<li>Markdown语言：markdown的标准</li>
+<li>CSS的stylus格式：是否允许压缩</li>
+<li>部署配置：github发布</li>
+</ul>
+<p>查看文件：_config.yml</p>
+<pre><code><span class="preprocessor"># Hexo Configuration</span>
+<span class="preprocessor">## Docs: http://hexo.io/docs/configuration.html</span>
+<span class="preprocessor">## Source: https://github.com/tommy351/hexo/</span>
+
+<span class="preprocessor"># 站点信息</span>
+title: Hexo博客
+subtitle: 新的开始
+description: blog.fens.me
+author: bsspirit
+email: bsspirit@gmail.com
+language: zh-CN
+
+<span class="preprocessor"># URL</span>
+<span class="preprocessor">## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'</span>
+url: http:<span class="comment">//blog.fens.me</span>
+root: /
+permalink: :year/:month/:day/:title/
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+
+<span class="preprocessor"># 文件目录</span>
+source_dir: source
+public_dir: <span class="keyword">public</span>
+
+<span class="preprocessor"># 写博客配置</span>
+new_post_name: :title.md # File name of <span class="keyword">new</span> posts
+default_layout: post
+auto_spacing: <span class="literal">false</span> # Add spaces between asian characters and western characters
+titlecase: <span class="literal">false</span> # Transform title into titlecase
+external_link: <span class="literal">true</span> # Open external links in <span class="keyword">new</span> tab
+max_open_file: <span class="number">100</span>
+multi_thread: <span class="literal">true</span>
+filename_case: <span class="number">0</span>
+render_drafts: <span class="literal">false</span>
+post_asset_folder: <span class="literal">false</span>
+highlight:
+  enable: <span class="literal">true</span>
+  line_number: <span class="literal">true</span>
+  tab_replace:
+
+<span class="preprocessor"># 目录和标签</span>
+default_category: uncategorized
+category_map:
+tag_map:
+
+<span class="preprocessor"># 归档设置</span>
+<span class="preprocessor">## 2: Enable pagination</span>
+<span class="preprocessor">## 1: Disable pagination</span>
+<span class="preprocessor">## 0: Fully Disable</span>
+archive: <span class="number">2</span>
+category: <span class="number">2</span>
+tag: <span class="number">2</span>
+
+<span class="preprocessor"># 服务器设置</span>
+<span class="preprocessor">## Hexo uses Connect as a server</span>
+<span class="preprocessor">## You can customize the logger format as defined in</span>
+<span class="preprocessor">## http://www.senchalabs.org/connect/logger.html</span>
+port: <span class="number">4000</span>
+server_ip: <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span>
+logger: <span class="literal">false</span>
+logger_format:
+
+<span class="preprocessor"># 时间和日期格式</span>
+<span class="preprocessor">## Hexo uses Moment.js to parse and display date</span>
+<span class="preprocessor">## You can customize the date format as defined in</span>
+<span class="preprocessor">## http://momentjs.com/docs/#/displaying/format/</span>
+date_format:<span class="constant"> MMM </span>D YYYY
+time_format: H:mm:ss
+
+<span class="preprocessor"># 分页设置</span>
+<span class="preprocessor">## Set per_page to 0 to disable pagination</span>
+per_page: <span class="number">10</span>
+pagination_dir: page
+
+<span class="preprocessor"># 评论</span>
+disqus_shortname:
+
+<span class="preprocessor"># 插件和皮肤</span>
+<span class="preprocessor">## Plugins: https://github.com/tommy351/hexo/wiki/Plugins</span>
+<span class="preprocessor">## Themes: https://github.com/tommy351/hexo/wiki/Themes</span>
+theme: landscape
+exclude_generator:
+
+<span class="preprocessor"># Markdown语法</span>
+<span class="preprocessor">## https://github.com/chjj/marked</span>
+markdown:
+  gfm: <span class="literal">true</span>
+  pedantic: <span class="literal">false</span>
+  sanitize: <span class="literal">false</span>
+  tables: <span class="literal">true</span>
+  breaks: <span class="literal">true</span>
+  smartLists: <span class="literal">true</span>
+  smartypants: <span class="literal">true</span>
+
+<span class="preprocessor"># CSS的stylus格式</span>
+stylus:
+  compress: <span class="literal">false</span>
+
+<span class="preprocessor"># 部署配置</span>
+<span class="preprocessor">## Docs: http://hexo.io/docs/deployment.html</span>
+deploy:
+  type:
+</code></pre><h3 id="3-2_命令行使用">3.2 命令行使用</h3><pre><code>D:\&gt; hexo help
+Usage: hexo 
+
+Commands:
+  help      Get help <span class="command"><span class="keyword">on</span> <span class="title">a</span> <span class="title">command</span></span>
+  init      Create <span class="operator">a</span> <span class="built_in">new</span> Hexo <span class="built_in">folder</span>
+  migrate   Migrate your site <span class="built_in">from</span> other <span class="keyword">system</span> <span class="built_in">to</span> Hexo
+  <span class="built_in">version</span>   Display <span class="built_in">version</span> information
+
+Global Options:
+  <span class="comment">--config   Specify config file instead of using _config.yml</span>
+  <span class="comment">--debug    Display all verbose messages in the terminal</span>
+  <span class="comment">--safe     Disable all plugins and scripts</span>
+  <span class="comment">--silent   Hide output on console</span>
+
+For more help, you can use `hexo help [<span class="command"><span class="keyword">command</span>]` <span class="title">for</span> <span class="title">the</span> <span class="title">detailed</span> <span class="title">information</span></span>
+<span class="operator">or</span> you can check <span class="operator">the</span> docs: <span class="keyword">http</span>://hexo.io/docs/
+</code></pre><ul>
+<li>help 查看帮助信息</li>
+<li>init 创建一个hexo项目</li>
+<li>migrate 从其他系统向hexo迁移</li>
+<li>version 查看hexo的版本</li>
+<li>–config参数，指定配置文件，代替默认的_config.yml</li>
+<li>–debug参数，调试模式，输出所有日志信息</li>
+<li>–safe参数，安全模式，禁用所有的插件和脚本</li>
+<li>–silent参数，无日志输出模式</li>
+</ul>
+<h3 id="3-3_创建新文章">3.3 创建新文章</h3><p>通过命令创建新文章</p>
+<pre><code>D:<span class="command">\workspace</span><span class="command">\javascript</span><span class="command">\nodejs</span>-hexo&gt;hexo new hello-world
+</code></pre><p>然后，我们编辑文件：”hello-world.md”，以markdown语法写文章，然后保存。</p>
+<pre><code><span class="header">title: Hello World
+---</span>
+Welcome to [<span class="link_label">Hexo</span>](<span class="link_url">http://hexo.io/</span>)! This is your very first post. Check [<span class="link_label">documentation</span>](<span class="link_url">http://hexo.io/docs/</span>) for more info. If you get any problems when using Hexo, you can find the answer in [<span class="link_label">troubleshooting</span>](<span class="link_url">http://hexo.io/docs/troubleshooting.html</span>) or you can ask me on [<span class="link_label">GitHub</span>](<span class="link_url">https://github.com/hexojs/hexo/issues</span>).
+</code></pre><p>在命令行，启动服务器。</p>
+<pre><code><span class="string">D:</span>\workspace\javascript\nodejs-hexo&gt;hexo server
+[info] Hexo is running at <span class="string">http:</span><span class="comment">//localhost:4000/. Press Ctrl+C to stop.</span>
+</code></pre><p>通过浏览器打开， <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a> ，就出现了我们新写的文章。 (这里我引入一个皮肤，在新搭建的环境中样式略有不同)<br><img src="/blog/images/hello-world.png" alt="" title="hello-world"></p>
+<p>这样就可以愉快的写博客啦</p>
+
       
     </div>
     
@@ -287,7 +448,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="hexo" data-title="hexo从零到部署" data-url="http://chobit000.github.io/blog/blog/2015-12-30-Wed Dec 30 2015 17:08:06 GMT+0800 (CST)/"></div>
+	<div class="ds-thread" data-thread-key="hexo" data-title="hexo从零到部署（一）" data-url="http://chobit000.github.io/blog/blog/2015-12-30-Wed Dec 30 2015 17:08:06 GMT+0800 (CST)/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
